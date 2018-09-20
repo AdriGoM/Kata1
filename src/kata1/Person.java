@@ -5,9 +5,9 @@
  */
 package kata1;
 
-import java.time.Instant;
-import java.util.Calendar;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.Period;
+
 
 /**
  *
@@ -15,11 +15,11 @@ import java.util.Date;
  */
 public class Person {
     private final String name;
-    private final Calendar birthday;
+    private final LocalDate birthday;
     private final long MILLESECONDS_PER_YEAR = (long) (1000*60*60*24*365.24);
     
     
-    public Person(String name, Calendar birthday) {
+    public Person(String name, LocalDate birthday) {
         this.birthday = birthday;
         this.name = name;
     }
@@ -28,17 +28,12 @@ public class Person {
         return name;
     }
 
-    public Calendar getBirthday() {
+    public LocalDate getBirthday() {
         return birthday;
     }
     
     public int getAge() {
-        Calendar today = Calendar.getInstance();
-        return (int) (millesecondsToYear(today.getTimeInMillis()-
-                birthday.getTimeInMillis()));
-    }
-    
-    private long millesecondsToYear(long milles) {
-        return milles / MILLESECONDS_PER_YEAR; 
+        LocalDate actualDate = LocalDate.now();
+        return (int) (Period.between(birthday, actualDate).getYears());
     }
 }

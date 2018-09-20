@@ -5,6 +5,8 @@
  */
 package kata1;
 
+import java.time.LocalDate;
+import java.time.Month;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,9 +21,7 @@ public class Kata1 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Calendar date;
-        date = Calendar.getInstance();
-        date.set(1997, 06, 16);
+        LocalDate date = LocalDate.of(1997, Month.JUNE, 16);
         Person p = new Person("Adrián", date);
         System.out.println(p.getName() + " tiene " + p.getAge() + " años");
     }
